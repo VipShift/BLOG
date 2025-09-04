@@ -6,6 +6,13 @@
       "password": "123456",
       "registered_at": "2023-01-01",
       "role_id": 1
+    },
+    {
+      "login": "ggg@ccc",
+      "password": "qwerty",
+      "registered_at": "2057-05-29 09:16",
+      "role_id": 3,
+      "id": 2
     }
   ],
   "roles": [

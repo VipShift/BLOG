@@ -6,6 +6,9 @@ const Description = styled.div`
   font-style: normal;
   font-weight: 400;
   text-align: center;
+  @media (max-width: 740px) {
+    display: none;
+  }
 
   @media (max-width: 600px) {
     display: none;

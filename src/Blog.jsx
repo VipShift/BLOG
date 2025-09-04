@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
 import { Footer, Header } from './components'
-import { Authorization } from './pages'
+import { Authorization, Registration } from './pages'
 
 const AppColum = styled.div`
   display: flex;
@@ -27,8 +27,9 @@ const AppColum = styled.div`
 `
 
 const Content = styled.div`
-  padding: 120px 0;
+  padding: 120px 0 40 px 0;
   flex-grow: 1;
+  margin: 20px;
   @media (max-width: 600px) {
     padding: 140px 10px 60px 10px;
   }
@@ -48,7 +49,7 @@ export function Blog() {
         <Routes>
           <Route path="/" element={<div>Главная</div>} />
           <Route path="/login" element={<Authorization />} />
-          <Route path="/register" element={<div>Регистрация</div>} />
+          <Route path="/register" element={<Registration />} />
           <Route path="/users" element={<div>Пользователи</div>} />
           <Route path="/post" element={<div>Новая статья</div>} />
           <Route path="/post/:postId" element={<div>Статья</div>} />
