@@ -1,10 +1,22 @@
-import { ControlPanel, Logo } from "./components";
-import styled from "styled-components";
+import styled from 'styled-components'
+import { ControlPanel, Logo } from './components'
 
 const Description = styled.div`
-  margin: 10px;
-  font-style: italic;
-`;
+  margin-left: -100px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+  @media (max-width: 400px) {
+    display: none;
+  }
+  @media (max-width: 300px) {
+    display: none;
+  }
+`
 
 const HeaderContainer = ({ className }) => (
   <header className={className}>
@@ -14,18 +26,37 @@ const HeaderContainer = ({ className }) => (
       Написание кода
       <br /> Разбор Ошибок
     </Description>
-    <ControlPanel className="control-panel" />
+    <ControlPanel />
   </header>
-);
+)
 
 export const Header = styled(HeaderContainer)`
   display: flex;
   justify-content: space-between;
-  position: fixed;
-  top: 0;
+  align-items: center;
+  padding: 5px 40px;
+  font-weight: bolt;
   width: 1000px;
   height: 100px;
-  padding: 5px 40px;
-  background-color: #242424;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
-`;
+  background-color: #000000;
+  box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.25);
+  @media (max-width: 1020px) {
+    width: 100%;
+    padding: 5px 20px;
+  }
+  @media (max-width: 600px) {
+    padding: 5px 10px;
+    font-size: 12px;
+    
+    height: 70px;
+  }
+  @media (max-width: 400px) {
+    font-size: 10px;
+    height: 60px;
+  }
+  @media (max-width: 300px) {
+    font-size: 8px;
+    padding: 5px 
+    height: 50px;
+  }
+`

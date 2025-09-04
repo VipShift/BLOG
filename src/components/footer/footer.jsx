@@ -1,22 +1,57 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from 'react'
+import styled from 'styled-components'
+
+const WeatherContainer = styled.div`
+  display: flex;
+  font-weight: bold;
+  padding: 10px 12px;
+  border-radius: 10px;
+  flex-direction: column;
+  background-color: #161616;
+  box-shadow: 6px 4px 14px rgba(170, 170, 170, 0.25);
+  & > div {
+    cursor: default;
+  }
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+  @media (max-width: 400px) {
+    font-size: 10px;
+  }
+  @media (max-width: 300px) {
+    font-size: 8px;
+  }
+`
+const NumContainer = styled.span`
+  font-size: 18px;
+  color: #5cc05a;
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
+  @media (max-width: 300px) {
+    font-size: 12px;
+  }
+`
 
 const FooterContainer = ({ className }) => {
-  const [city, setCity] = useState("");
-  const [temperature, setTemperature] = useState("");
-  const [weather, setWether] = useState("");
+  const [city, setCity] = useState('')
+  const [temperature, setTemperature] = useState('')
+  const [weather, setWether] = useState('')
 
   useEffect(() => {
     fetch(
-      "https://api.openweathermap.org/data/2.5/weather?q=Freiburg, DE&units=metric&lang=ru&appid=1498c247df9d6e8abd9b63620a6d51e2"
+      'https://api.openweathermap.org/data/2.5/weather?q=Freiburg, DE&units=metric&lang=ru&appid=1498c247df9d6e8abd9b63620a6d51e2',
     )
       .then((data) => data.json())
       .then(({ name, main, weather }) => {
-        setCity(name);
-        setTemperature(Math.trunc(main.temp));
-        setWether(weather[0].description);
-      });
-  }, []);
+        setCity(name)
+        setTemperature(Math.trunc(main.temp))
+        setWether(weather[0].description)
+      })
+  }, [])
 
   return (
     <div className={className}>
@@ -24,22 +59,22 @@ const FooterContainer = ({ className }) => {
         <div>Блог веб-разработка</div>
         <div>web@developer.de</div>
       </div>
-      <div>
+      <WeatherContainer>
         <div>
-          {city}{" "}
-          {new Date().toLocaleString("ru-RU", {
-            day: "numeric",
-            month: "long",
-            timeZone: "Europe/Berlin",
+          {city}{' '}
+          {new Date().toLocaleString('ru-RU', {
+            day: 'numeric',
+            month: 'long',
+            timeZone: 'Europe/Berlin',
           })}
         </div>
         <div>
-          {temperature}°C, {weather}
+          <NumContainer>{temperature}</NumContainer>°C, {weather}
         </div>
-      </div>
+      </WeatherContainer>
     </div>
-  );
-};
+  )
+}
 
 export const Footer = styled(FooterContainer)`
   display: flex;
@@ -49,6 +84,20 @@ export const Footer = styled(FooterContainer)`
   font-weight: bolt;
   width: 1000px;
   height: 100px;
-  background-color: #242424;
+  background-color: #000000;
   box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.25);
-`;
+  @media (max-width: 1020px) {
+    width: 100%;
+    padding: 5px 20px;
+  }
+  @media (max-width: 600px) {
+    font-size: 12px;
+  }
+  @media (max-width: 400px) {
+    font-size: 10px;
+  }
+  @media (max-width: 300px) {
+    font-size: 8px;
+  }
+`
+/*---------------------------------*/
