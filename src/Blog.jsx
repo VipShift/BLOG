@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
 import { Footer, Header } from './components'
-import { Authorization, Registration } from './pages'
+import { Authorization, Registration, Users } from './pages'
 
 const AppColum = styled.div`
   display: flex;
@@ -26,7 +26,7 @@ const AppColum = styled.div`
   }
 `
 
-const Content = styled.div`
+const Pages = styled.div`
   padding: 120px 0 40 px 0;
   flex-grow: 1;
   margin: 20px;
@@ -45,17 +45,38 @@ export function Blog() {
   return (
     <AppColum>
       <Header />
-      <Content>
+      <Pages>
         <Routes>
-          <Route path="/" element={<div>Главная</div>} />
-          <Route path="/login" element={<Authorization />} />
-          <Route path="/register" element={<Registration />} />
-          <Route path="/users" element={<div>Пользователи</div>} />
-          <Route path="/post" element={<div>Новая статья</div>} />
-          <Route path="/post/:postId" element={<div>Статья</div>} />
-          <Route path="*" element={<div>Ошибка</div>} />
+          <Route
+            path="/"
+            element={<div>Главная</div>}
+          />
+          <Route
+            path="/login"
+            element={<Authorization />}
+          />
+          <Route
+            path="/register"
+            element={<Registration />}
+          />
+          <Route
+            path="/users"
+            element={<Users />}
+          />
+          <Route
+            path="/post"
+            element={<div>Новая статья</div>}
+          />
+          <Route
+            path="/post/:postId"
+            element={<div>Статья</div>}
+          />
+          <Route
+            path="*"
+            element={<div>Ошибка</div>}
+          />
         </Routes>
-      </Content>
+      </Pages>
       <Footer />
     </AppColum>
   )

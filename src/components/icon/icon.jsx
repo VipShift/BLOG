@@ -1,14 +1,26 @@
 import styled from 'styled-components'
 
-const IconContainer = ({ className, id }) => (
-  <div className={className}>
-    <i className={`fa ${id} `} aria-hidden="true"></i>
+const IconContainer = ({ className, id, onClick }) => (
+  <div
+    className={className}
+    onClick={onClick}
+  >
+    <i
+      className={`fa ${id} `}
+      aria-hidden="true"
+    ></i>
   </div>
 )
 
 export const Icon = styled(IconContainer)`
   font-size: ${({ size = '24px' }) => size};
   margin-right: ${({ margin_r = '0' }) => margin_r};
+
+  color: ${({ disabled }) => (disabled ? '#727272' : '#ffffff')};
+
+  &:hover {
+    cursor: pointer;
+  }
 
   @media (max-width: 600px) {
     font-size: 14px;

@@ -1,17 +1,17 @@
 {
   "users": [
     {
-      "id": 1,
       "login": "admin@gmail.com",
       "password": "123456",
-      "registered_at": "2023-01-01",
-      "role_id": 1
+      "registered_at": "2047-09-18 04:08",
+      "role_id": 1,
+      "id": 1
     },
     {
-      "login": "ggg@ccc",
-      "password": "qwerty",
-      "registered_at": "2057-05-29 09:16",
-      "role_id": 3,
+      "login": "ddd",
+      "password": "123456",
+      "registered_at": "2059-12-02 17:48",
+      "role_id": 2,
       "id": 2
     }
   ],

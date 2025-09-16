@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useStore } from 'react-redux'
 
-export const useResetForm = (reset) => {
+export const useResetAuthForm = (reset) => {
   const store = useStore()
 
   useEffect(() => {

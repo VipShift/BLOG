@@ -24,42 +24,6 @@ const RightAligned = styled.div`
   }
 `
 
-const StyledIcon = styled.div`
-  &:hover {
-    cursor: pointer;
-  }
-  @media (max-width: 600px) {
-    font-size: 14px;
-  }
-  @media (max-width: 400px) {
-    font-size: 12px;
-  }
-  @media (max-width: 300px) {
-    font-size: 8px;
-  }
-`
-const UserName = styled.div`
-  color: #949494;
-  font-size: 18px;
-  margin-right: 10px;
-  font-weight: bold;
-  background-color: #3a3a3a;
-  padding: 3px 5px;
-  border-radius: 5px;
-  &:hover {
-    cursor: default;
-  }
-  @media (max-width: 600px) {
-    font-size: 12px;
-  }
-  @media (max-width: 400px) {
-    font-size: 8px;
-  }
-  @media (max-width: 300px) {
-    font-size: 7px;
-  }
-`
-
 const ButtonMy = styled.button`
   display: flex;
   justify-content: center;
@@ -77,6 +41,19 @@ const ButtonMy = styled.button`
     cursor: pointer;
     background-color: #323232;
   }
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
+  @media (max-width: 400px) {
+    font-size: 12px;
+  }
+  @media (max-width: 300px) {
+    font-size: 10px;
+  }
+`
+const UserName = styled.div`
+  color: #7b7b7b;
+  font-size: 16px;
   @media (max-width: 600px) {
     font-size: 14px;
   }
@@ -105,16 +82,18 @@ const ControlPanelContainer = ({ className }) => {
         ) : (
           <>
             <UserName>{login}</UserName>
-            <StyledIcon onClick={() => dispatch(logout(session))}>
-              <Icon id="fa-sign-out" />
-            </StyledIcon>
+            <Icon
+              id="fa-sign-out"
+              onClick={() => dispatch(logout(session))}
+            />
           </>
         )}
       </RightAligned>
       <RightAligned>
-        <StyledIcon onClick={() => navigate(-1)}>
-          <Icon id="fa-arrow-circle-left" />
-        </StyledIcon>
+        <Icon
+          id="fa-arrow-circle-left"
+          onClick={() => navigate(-1)}
+        />
         <Link to="/post">
           <Icon id="fa fa-file-text" />
         </Link>
