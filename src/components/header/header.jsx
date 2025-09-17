@@ -34,6 +34,12 @@ const HeaderContainer = ({ className }) => (
 )
 
 export const Header = styled(HeaderContainer)`
+  position: fixed;
+  left: 100;
+  right: 100;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,7 +48,8 @@ export const Header = styled(HeaderContainer)`
   width: 1000px;
   height: 100px;
   background-color: #000000;
-  box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1px 15px rgba(255, 255, 255, 0.25);
+  z-index: 1;
   @media (max-width: 1020px) {
     width: 100%;
     padding: 5px 20px;

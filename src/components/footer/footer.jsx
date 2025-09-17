@@ -77,6 +77,11 @@ const FooterContainer = ({ className }) => {
 }
 
 export const Footer = styled(FooterContainer)`
+  position: fixed;
+  left: 100;
+  right: 100;
+  bottom: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;

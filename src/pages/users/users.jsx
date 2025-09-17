@@ -70,7 +70,7 @@ export const Users = styled(UsersContainer)`
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-left: auto
   width: 570px;
-  margin: 0 auto;
   font-size: 18px;
 `

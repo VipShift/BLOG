@@ -5,6 +5,10 @@ const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `
 
 export const Content = ({ children, error }) => {

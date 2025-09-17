@@ -30,7 +30,10 @@ const UserRowContainer = ({
 
   return (
     <div className={className}>
-      <TableRow border={true}>
+      <TableRow
+        border={true}
+        shadow={true}
+      >
         <div className="login-column">{login}</div>
         <div className="register-at-column">{registeredAt}</div>
         <div className="role-column">

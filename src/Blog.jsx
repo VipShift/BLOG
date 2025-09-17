@@ -1,7 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 import styled from 'styled-components'
-import { Footer, Header } from './components'
-import { Authorization, Registration, Users } from './pages'
+import { Footer, Header, Modal } from './components'
+import { Authorization, Registration, Users, Post } from './pages'
+import { useLayoutEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { setUser } from './actions'
 
 const AppColum = styled.div`
   display: flex;
@@ -10,7 +13,7 @@ const AppColum = styled.div`
   width: 1000px;
   min-height: 100%;
   margin: 0 auto;
-  background-color: #171717;
+  background-color: #000000;
   color: #fff;
   @media (max-width: 1020px) {
     width: 100%;
@@ -27,21 +30,37 @@ const AppColum = styled.div`
 `
 
 const Pages = styled.div`
-  padding: 120px 0 40 px 0;
-  flex-grow: 1;
+  padding: 120px 20px 110px 20px;
   margin: 20px;
   @media (max-width: 600px) {
-    padding: 140px 10px 60px 10px;
+    padding: 80px 10px 60px 10px;
   }
   @media (max-width: 400px) {
-    padding: 160px 10px 40px 10px;
+    padding: 60px 10px 40px 10px;
   }
   @media (max-width: 300px) {
-    padding: 180px 10px 20px 10px;
+    padding: 40px 10px 20px 10px;
   }
 `
 
 export function Blog() {
+  const dispatch = useDispatch()
+
+  useLayoutEffect(() => {
+    const currentUserDataJson = sessionStorage.getItem('userData')
+
+    if (!currentUserDataJson) return
+
+    const currentUserData = JSON.parse(currentUserDataJson)
+
+    dispatch(
+      setUser({
+        ...currentUserData,
+        roleId: Number(currentUserData.roleId),
+      }),
+    )
+  }, [dispatch])
+
   return (
     <AppColum>
       <Header />
@@ -64,12 +83,12 @@ export function Blog() {
             element={<Users />}
           />
           <Route
-            path="/post"
-            element={<div>Новая статья</div>}
+            path="/posts"
+            element={<h2>Посты</h2>}
           />
           <Route
-            path="/post/:postId"
-            element={<div>Статья</div>}
+            path="/post/:id"
+            element={<Post />}
           />
           <Route
             path="*"
@@ -78,6 +97,7 @@ export function Blog() {
         </Routes>
       </Pages>
       <Footer />
+      <Modal />
     </AppColum>
   )
 }
