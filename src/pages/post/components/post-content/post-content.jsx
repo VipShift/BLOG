@@ -1,11 +1,14 @@
 import styled from 'styled-components'
-import { H2 } from '../../../../components'
-import { Icon } from '../../../../components' //
+import { H2, Icon } from '../../../../components'
+import { SpecialPanel } from '../special-panel.jsx/special-panel'
+import { useNavigate } from 'react-router-dom'
 
 const PostContentContainer = ({
   post: { id, title, content, imageUrl, publishedAt },
   className,
 }) => {
+  const navigate = useNavigate()
+
   return (
     <div className={className}>
       {imageUrl ? (
@@ -16,29 +19,20 @@ const PostContentContainer = ({
         />
       ) : null}
       <H2>{title}</H2>
-
-      <div className="special-panel">
-        <div className="published-at">
-          <Icon
-            id="fa-calendar-o"
-            margin_r="10px"
-            size="16px"
-          />
-          <div className="date">{publishedAt}</div>
-        </div>
-
-        <div className="buttons">
-          <Icon
-            id="fa-trash-o"
-            margin_r="20px"
-            size="22px"
-          />
+      <SpecialPanel
+        publishedAt={publishedAt}
+        editButton={
           <Icon
             id="fa-pencil-square-o"
+            margin_r="10px"
             size="24px"
+            onClick={() => {
+              navigate(`/post/${id}/edit`)
+            }}
           />
-        </div>
-      </div>
+        }
+      />
+
       <div className="post-text">{content}</div>
     </div>
   )
@@ -71,7 +65,8 @@ export const PostContent = styled(PostContentContainer)`
     top: -6px;
   }
   & .post-text {
-    font-size: 12px;
-    text-align: justify;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 `

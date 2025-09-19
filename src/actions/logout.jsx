@@ -1,4 +1,4 @@
-import { server } from '../bff'
+import { server } from '../bff/server'
 import { sessions } from '../bff/sessions'
 import { ACTION_TYPE } from './action-type'
 

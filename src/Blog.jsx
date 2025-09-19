@@ -84,12 +84,20 @@ export function Blog() {
           />
           <Route
             path="/posts"
-            element={<h2>Посты</h2>}
+            element={<h2>Новая статья</h2>}
           />
           <Route
             path="/post/:id"
-            element={<Post />}
+            element={<Post mode="view" />}
           />
+          <Route
+            path="/post/:id/edit"
+            element={<Post mode="edit" />}
+          />
+          {/* <Route
+            path="/post/:id/*"
+            element={<Post />}
+          /> */}
           <Route
             path="*"
             element={<div>Ошибка</div>}

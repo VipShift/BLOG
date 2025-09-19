@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom' // --- IGNORE ---
 import styled from 'styled-components'
 import * as yup from 'yup'
 import { setUser } from '../../actions'
-import { server } from '../../bff'
+import { server } from '../../bff/server'
 import { Button, H2, Input, AuthFormError } from '../../components'
 import { useResetAuthForm } from '../../hooks'
 import { useNavigate } from 'react-router-dom'
