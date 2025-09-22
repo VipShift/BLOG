@@ -1,5 +1,11 @@
-import { setPostData } from './set-post-data'
+//src/actions/save-post-async.jsx
+
+import { setPostData } from "./set-post-data";
+//
+
 export const savePostAsync = (requestServer, newPostData) => (dispatch) =>
-  requestServer('savePost', newPostData).then((updatedPost) => {
-    dispatch(setPostData(updatedPost.res))
-  })
+    requestServer("savePost", newPostData).then((updatedPost) => {
+        dispatch(setPostData(updatedPost.res));
+
+        return updatedPost.res;
+    });

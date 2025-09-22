@@ -1,24 +1,25 @@
 // src/bff/sessions.jsx
-import { addSession, deleteSession, getSession } from './api'
+import { addSession, deleteSession, getSession } from "./api";
 
 export const sessions = {
-  create(user) {
-    const hash = Math.random().toFixed(50)
+    create(user) {
+        const hash = Math.random().toFixed(50);
 
-    addSession(hash, user)
-    return hash
-  },
+        addSession(hash, user);
+        return hash;
+    },
 
-  async remove(hash) {
-    const session = await getSession(hash)
+    async remove(hash) {
+        const session = await getSession(hash);
 
-    if (!session) return
+        if (!session) return;
 
-    deleteSession(session.id)
-  },
+        deleteSession(session.id);
+    },
 
-  async access(hash, accessRoles) {
-    const session = await getSession(hash) 
-    return !!session.user && accessRoles.includes(session.user.roleId)
-  },
-}
+    async access(hash, accessRoles) {
+        const session = await getSession(hash);
+        return !!session.user && accessRoles.includes(session.user.roleId);
+    },
+};
+

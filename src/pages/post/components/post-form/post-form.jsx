@@ -1,76 +1,82 @@
-//
 import styled from "styled-components";
 import { Icon, Input } from "../../../../components";
 import { SpecialPanel } from "../special-panel.jsx/special-panel";
-import { useRef } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { sanitizeContent } from "./utils";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { savePostAsync } from "../../../../actions";
 import { useServerRequest } from "../../../../hooks";
 
-const PostFormContainer = ({
-    post: { id, title, content, imageUrl, publishedAt },
-    className,
-}) => {
+const PostFormContainer = ({ post, className }) => {
+    const { id, title, content, imageUrl, publishedAt } = post;
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const imageRef = useRef(null);
-    const titleRef = useRef(null);
-    const contentRef = useRef(null);
     const requestServer = useServerRequest();
 
+    const [imageValue, setImageValue] = useState(imageUrl);
+    const [titleValue, setTitleValue] = useState(title);
+    const contentRef = useRef(null);
+
+    useEffect(() => {
+        setImageValue(imageUrl || "");
+        setTitleValue(title || "");
+        if (contentRef.current) {
+            contentRef.current.innerHTML = content || "";
+        }
+    }, [id, imageUrl, title, content]);
+
     const onSave = () => {
-        const newImage = imageRef.current.value;
-        const newTitle = titleRef.current.value;
-        const newContent = sanitizeContent(contentRef.current.innerHTML);
+        const newContant = sanitizeContent(contentRef.current.innerHTML);
 
         dispatch(
             savePostAsync(requestServer, {
                 id,
-                imageUrl: newImage,
-                title: newTitle,
-                content: newContent,
+                imageUrl: imageValue,
+                title: titleValue,
+                content: newContant,
             })
-        ).then(() => navigate(`/post/${id}`));
+        ).then(({ id }) => navigate(`/post/${id}`));
     };
+
+    //
 
     return (
         <div className={className}>
             <SpecialPanel
+                id={id}
                 publishedAt={publishedAt}
                 editButton={
                     <Icon
-                        id=" fa-floppy-o"
+                        id="fa-floppy-o"
                         size="22px"
                         margin_r="10px"
-                        onClick={() => {
-                            onSave();
-                        }}
+                        onClick={onSave}
                     />
                 }
             />
 
             <div className="editor">
                 <Input
-                    ref={imageRef}
-                    defaultValue={imageUrl}
+                    value={imageValue}
+                    onChange={(e) => setImageValue(e.target.value)}
                     placeholder="Ссылка на картинку..."
                 />
                 <Input
-                    ref={titleRef}
-                    defaultValue={title}
+                    value={titleValue}
+                    onChange={(e) => setTitleValue(e.target.value)}
                     placeholder="Заголовок..."
                 />
             </div>
 
-            <h3>Содержимое-поста</h3>
+            <h3>Содержимое поста</h3>
             <div
                 ref={contentRef}
                 className="post-text"
-                placeholder="Текст..."
-                contentEditable="true"
+                contentEditable={true}
                 suppressContentEditableWarning={true}
+                // onInput={(e) => setContentText(e.currentTarget.innerHTML)}
             >
                 {content}
             </div>
