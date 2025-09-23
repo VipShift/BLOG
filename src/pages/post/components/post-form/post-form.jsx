@@ -61,7 +61,7 @@ const PostFormContainer = ({ post, className }) => {
                 <Input
                     value={imageValue}
                     onChange={(e) => setImageValue(e.target.value)}
-                    placeholder="Ссылка на картинку..."
+                    placeholder="Ссылка на картинку... (280px/150px)"
                 />
                 <Input
                     value={titleValue}
