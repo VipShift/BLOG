@@ -1,22 +1,24 @@
-import { getUsers } from '../api'
-import { sessions } from '../sessions'
-import { ROLE } from '../constants'
+// src/bff/fetch-users.jsx
+import { getUsers } from "../api";
+import { ROLE } from "../constants";
+import { sessions } from "../sessions";
 
 export const fetchUsers = async (hash) => {
-  const accessRoles = [ROLE.ADMIN]
+    const accessRoles = [ROLE.ADMIN];
 
-  const access = await sessions.access(hash, accessRoles)
-  if (!access) {
-    return {
-      error: ' Доступ запрещен',
-      res: null,
+    const hasAccess = await sessions.access(hash, accessRoles);
+
+    if (!hasAccess) {
+        return {
+            error: "Доступ запрещен",
+            res: null,
+        };
     }
-  }
 
-  const users = await getUsers()
+    const users = await getUsers();
 
-  return {
-    error: null,
-    res: users,
-  }
-}
+    return {
+        error: null,
+        res: users,
+    };
+};

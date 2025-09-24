@@ -1,5 +1,6 @@
-import { transformUser } from '../transformers'
+import { transformUser } from "../transformers";
 export const getUsers = () =>
-    fetch('http://localhost:3004/users')
+    fetch("http://localhost:3004/users")
         .then((loadedUsers) => loadedUsers.json())
-        .then((loadedUsers) => loadedUsers && loadedUsers.map(transformUser))
+        .then((loadedUsers) => loadedUsers)
+        .then((loadedUsers) => loadedUsers && loadedUsers.map(transformUser));

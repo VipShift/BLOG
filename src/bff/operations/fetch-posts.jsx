@@ -1,14 +1,19 @@
+// src/bff/api/fetch-posts.jsx
 import { getComments, getPosts } from "../api";
 import { getCommentsCount } from "../utils";
 
-export const fetchPosts = async () => {
-    const [posts, comments] = await Promise.all([getPosts(), getComments()]);
+export const fetchPosts = async (page, perPage) => {
+    const [postsData, comments] = await Promise.all([
+        getPosts(page, perPage),
+        getComments(),
+    ]);
 
     return {
         error: null,
-        res: posts.map((post) => ({
+        res: postsData.posts.map((post) => ({
             ...post,
             commentsCount: getCommentsCount(comments, post.id),
         })),
+        total: postsData.total,
     };
 };

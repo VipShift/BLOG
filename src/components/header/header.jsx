@@ -1,37 +1,38 @@
-import styled from 'styled-components'
-import { ControlPanel, Logo } from './components'
+import styled from "styled-components";
+import { ControlPanel, Logo } from "./components";
 
 const Description = styled.div`
-  margin-left: -100px;
-  font-style: normal;
-  font-weight: 400;
-  text-align: center;
-  @media (max-width: 740px) {
-    display: none;
-  }
+    margin-left: -100px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    @media (max-width: 740px) {
+        display: none;
+    }
 
-  @media (max-width: 600px) {
-    display: none;
-  }
-  @media (max-width: 400px) {
-    display: none;
-  }
-  @media (max-width: 300px) {
-    display: none;
-  }
-`
+    @media (max-width: 600px) {
+        display: none;
+    }
+    @media (max-width: 400px) {
+        display: none;
+    }
+    @media (max-width: 300px) {
+        display: none;
+    }
+`;
 
 const HeaderContainer = ({ className }) => (
-  <header className={className}>
-    <Logo />
-    <Description>
-      Веб-технологии <br />
-      Написание кода
-      <br /> Разбор Ошибок
-    </Description>
-    <ControlPanel />
-  </header>
-)
+    <header className={className}>
+        <Logo />
+        <Description>
+            Web-Technologien <br />
+            Code schreiben <br />
+            Fehleranalyse
+        </Description>
+
+        <ControlPanel />
+    </header>
+);
 
 export const Header = styled(HeaderContainer)`
   position: fixed;
@@ -69,4 +70,5 @@ export const Header = styled(HeaderContainer)`
     padding: 5px 
     height: 50px;
   }
-`
+`;
+

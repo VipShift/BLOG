@@ -73,10 +73,6 @@ export function Blog() {
                     <Route path="/post/create" element={<Post />} />
                     <Route path="/post/:id" element={<Post />} />
                     <Route path="/post/:id/edit" element={<Post />} />
-                    {/* <Route
-            path="/post/:id/*"
-            element={<Post />}
-          /> */}
                     <Route path="*" element={<div>Ошибка</div>} />
                 </Routes>
             </Pages>
