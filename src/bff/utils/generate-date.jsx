@@ -1,1 +1,1 @@
-export const generateDate = () => new Date().toISOString().replace("T", " ");
+export const generateDate = () => new Date().toISOString().split("T")[0];

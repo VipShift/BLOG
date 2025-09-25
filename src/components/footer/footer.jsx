@@ -93,7 +93,7 @@ export const Footer = styled(FooterContainer)`
     padding: 5px 40px;
     font-weight: bolt;
     width: 1000px;
-    height: 100px;
+    height: 90px;
     background-color: #000000;
     box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.25);
     @media (max-width: 1020px) {

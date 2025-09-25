@@ -49,7 +49,7 @@ export const Header = styled(HeaderContainer)`
   width: 1000px;
   height: 100px;
   background-color: #000000;
-  box-shadow: 0px 1px 15px rgba(255, 255, 255, 0.25);
+  box-shadow: 0px 1px 15px rgba(112, 112, 112, 0.25);
   z-index: 1;
   @media (max-width: 1020px) {
     width: 100%;
@@ -71,4 +71,3 @@ export const Header = styled(HeaderContainer)`
     height: 50px;
   }
 `;
-

@@ -11,12 +11,9 @@ export const UsersContainer = ({ className }) => {
     const [roles, setRoles] = useState([]);
     const [errorMessage, setErrorMessage] = useState(null);
     const [shouldDeleteUserList, setShouldDeleteUserList] = useState(false);
-    const [loading, setLoading] = useState(true);
     const requestServer = useServerRequest();
 
     useEffect(() => {
-        setLoading(true);
-
         Promise.all([
             requestServer("fetchUsers"),
             requestServer("fetchRoles"),
@@ -27,7 +24,6 @@ export const UsersContainer = ({ className }) => {
             }
             setUsers(usersRes.res);
             setRoles(rolesRes.res);
-            setLoading(false);
         });
     }, [requestServer, shouldDeleteUserList]);
 
@@ -40,44 +36,33 @@ export const UsersContainer = ({ className }) => {
     return (
         <div className={className}>
             <Content error={errorMessage}>
-                {loading ? (
-                    <>
-                        <p>"Загрузка..."</p>
-                    </>
-                ) : (
-                    <>
-                        {" "}
-                        <H2>Пользователи</H2>
-                        <div>
-                            <TableRow>
-                                <div className="login-column">Логин</div>
-                                <div className="register-at-column">
-                                    Дата регистрации
-                                </div>
-                                <div className="role-column">Роль</div>
-                            </TableRow>
-
-                            {users.map(
-                                ({ id, login, registeredAt, roleId }) => (
-                                    <UserRow
-                                        key={id}
-                                        id={id}
-                                        login={login}
-                                        registeredAt={registeredAt}
-                                        roleId={roleId}
-                                        roles={roles.filter(
-                                            (role) =>
-                                                Number(role.id) !== ROLE.GUST
-                                        )}
-                                        onUserRemove={() => {
-                                            onUserRemove(id);
-                                        }}
-                                    />
-                                )
-                            )}
+                {" "}
+                <H2>Пользователи</H2>
+                <div>
+                    <TableRow>
+                        <div className="login-column">Логин</div>
+                        <div className="register-at-column">
+                            Дата регистрации
                         </div>
-                    </>
-                )}
+                        <div className="role-column">Роль</div>
+                    </TableRow>
+
+                    {users.map(({ id, login, registeredAt, roleId }) => (
+                        <UserRow
+                            key={id}
+                            id={id}
+                            login={login}
+                            registeredAt={registeredAt}
+                            roleId={roleId}
+                            roles={roles.filter(
+                                (role) => Number(role.id) !== ROLE.GUST
+                            )}
+                            onUserRemove={() => {
+                                onUserRemove(id);
+                            }}
+                        />
+                    ))}
+                </div>
             </Content>
         </div>
     );
