@@ -10,7 +10,7 @@ export const fetchUsers = async (hash) => {
 
     if (!hasAccess) {
         return {
-            error: "Доступ запрещен",
+            error: "Zugriff verweigert",
             res: null,
         };
     }

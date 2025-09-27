@@ -16,12 +16,12 @@ const MainContainer = ({ className }) => {
     const requestServer = useServerRequest();
 
     useEffect(() => {
-        requestServer("fetchPosts", shouldSearch, page, PAGINATION_LIMIT)
-            .then((response) => {
+        requestServer("fetchPosts", shouldSearch, page, PAGINATION_LIMIT).then(
+            (response) => {
                 setPosts(response.res);
                 setTotalPages(Math.ceil(response.total / PAGINATION_LIMIT));
-            })
-            .catch((err) => console.error("Ошибка запроса:", err));
+            }
+        );
     }, [requestServer, page, shouldSearch]);
 
     const delayedSearch = useMemo(

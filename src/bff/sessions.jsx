@@ -24,6 +24,6 @@ export const sessions = {
             return false;
         }
 
-        return accessRoles.includes(session.user.roleId);
+        return !!session?.user && accessRoles.includes(session.user.roleId);
     },
 };

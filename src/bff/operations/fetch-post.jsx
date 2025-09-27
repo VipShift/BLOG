@@ -1,24 +1,38 @@
 // src/bff/operations/fetch-post.jsx
 
-import { getPost, getComments, getUsers, getUser } from '../api'
+import { getPost, getComments, getUsers } from "../api";
 //
 export async function fetchPost(postId) {
-  const post = await getPost(postId)
+    let post;
+    let error;
 
-  const comments = await getComments(postId)
+    try {
+        post = await getPost(postId);
+    } catch (postError) {
+        error = postError;
+    }
 
-  const users = await getUsers()
+    if (error) {
+        return {
+            error,
+            res: null,
+        };
+    }
 
-  const commentsWhitAuthor = comments.map((comment) => {
-    const user = users.find(({ id }) => id === comment.authorId)
-    return { ...comment, author: user?.login }
-  })
+    const comments = await getComments(postId);
 
-  return {
-    error: null,
-    res: {
-      ...post,
-      comments: commentsWhitAuthor,
-    },
-  }
+    const users = await getUsers();
+
+    const commentsWhitAuthor = comments.map((comment) => {
+        const user = users.find(({ id }) => id === comment.authorId);
+        return { ...comment, author: user?.login };
+    });
+
+    return {
+        error: null,
+        res: {
+            ...post,
+            comments: commentsWhitAuthor,
+        },
+    };
 }

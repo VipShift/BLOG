@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { H2, Content } from "../../components";
+import { H2, PrivetContent } from "../../components";
 import { UserRow, TableRow } from "./components";
 import { ROLE } from "../../constants";
 import { useServerRequest } from "../../hooks";
-import { sessions } from "../../bff/sessions";
+import { checkAccess } from "../../utils";
+import { useSelector } from "react-redux";
+import { selectUserRole } from "../../selectors";
 
 export const UsersContainer = ({ className }) => {
     const [users, setUsers] = useState([]);
@@ -12,6 +14,11 @@ export const UsersContainer = ({ className }) => {
     const [errorMessage, setErrorMessage] = useState(null);
     const [shouldDeleteUserList, setShouldDeleteUserList] = useState(false);
     const requestServer = useServerRequest();
+    const userRole = useSelector(selectUserRole);
+
+    useEffect(() => {
+        if (!checkAccess([ROLE.ADMIN], userRole)) return;
+    });
 
     useEffect(() => {
         Promise.all([
@@ -28,23 +35,23 @@ export const UsersContainer = ({ className }) => {
     }, [requestServer, shouldDeleteUserList]);
 
     const onUserRemove = (userId) => {
+        if (!checkAccess([ROLE.ADMIN], userRole)) return;
         requestServer("removeUser", userId).then(() => {
             setShouldDeleteUserList(!shouldDeleteUserList);
         });
     };
 
     return (
-        <div className={className}>
-            <Content error={errorMessage}>
-                {" "}
+        <PrivetContent access={[ROLE.ADMIN]} serverError={errorMessage}>
+            <div className={className}>
                 <H2>Пользователи</H2>
                 <div>
                     <TableRow>
-                        <div className="login-column">Логин</div>
+                        <div className="login-column">Login</div>
                         <div className="register-at-column">
-                            Дата регистрации
+                            Registrierungsdatum
                         </div>
-                        <div className="role-column">Роль</div>
+                        <div className="role-column">Rolle</div>
                     </TableRow>
 
                     {users.map(({ id, login, registeredAt, roleId }) => (
@@ -63,8 +70,8 @@ export const UsersContainer = ({ className }) => {
                         />
                     ))}
                 </div>
-            </Content>
-        </div>
+            </div>
+        </PrivetContent>
     );
 };
 

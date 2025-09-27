@@ -61,22 +61,22 @@ const PostFormContainer = ({ post, className }) => {
                 <Input
                     value={imageValue}
                     onChange={(e) => setImageValue(e.target.value)}
-                    placeholder="Ссылка на картинку... (280px/150px)"
+                    placeholder="Bildlink... (280px/150px)"
                 />
                 <Input
                     value={titleValue}
                     onChange={(e) => setTitleValue(e.target.value)}
-                    placeholder="Заголовок..."
+                    placeholder="Überschrift..."
                 />
             </div>
 
-            <h3>Содержимое поста</h3>
+            <h3>Inhalt des Beitrags</h3>
             <div
                 ref={contentRef}
                 className="post-text"
                 contentEditable={true}
                 suppressContentEditableWarning={true}
-                // onInput={(e) => setContentText(e.currentTarget.innerHTML)}
+                onInput={(e) => setContentText(e.currentTarget.innerHTML)}
             >
                 {content}
             </div>
