@@ -12,14 +12,7 @@
       "login": "eee@gmail.com",
       "password": "123456",
       "registered_at": "2025-09-27",
-      "role_id": 1
-    },
-    {
-      "id": "f4fb",
-      "login": "ggg@ccc",
-      "password": "123456",
-      "registered_at": "2025-09-27",
-      "role_id": 3
+      "role_id": 2
     },
     {
       "id": "cc50",
@@ -313,6 +306,39 @@
     {
       "id": "50ec",
       "hash": "0.59276676481231949100703104704734869301319122314453",
+      "user": {
+        "id": "1",
+        "login": "admin@gmail.com",
+        "password": "123456",
+        "registeredAt": "2047-09-18 ",
+        "roleId": 1
+      }
+    },
+    {
+      "id": "6b03",
+      "hash": "0.27051863937267661697205767268314957618713378906250",
+      "user": {
+        "id": "cc50",
+        "login": "qqq@gmail.com",
+        "password": "123456",
+        "registeredAt": "2025-09-27",
+        "roleId": 3
+      }
+    },
+    {
+      "id": "096f",
+      "hash": "0.35748696765789600426899141893954947590827941894531",
+      "user": {
+        "id": "1",
+        "login": "admin@gmail.com",
+        "password": "123456",
+        "registeredAt": "2047-09-18 ",
+        "roleId": 1
+      }
+    },
+    {
+      "id": "a060",
+      "hash": "0.95285426639900494549806353461463004350662231445313",
       "user": {
         "id": "1",
         "login": "admin@gmail.com",

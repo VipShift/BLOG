@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -80,3 +81,9 @@ export const SpecialPanel = styled(SpecialPanelContainer)`
         top: -6px;
     }
 `;
+
+SpecialPanel.propTypes = {
+    id: PropTypes.string.isRequired,
+    publishedAt: PropTypes.string.isRequired,
+    editButton: PropTypes.node.isRequired,
+};

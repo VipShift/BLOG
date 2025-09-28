@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { H2, Icon } from "../../../../components";
 import { SpecialPanel } from "../special-panel.jsx/special-panel";
 import { useNavigate } from "react-router-dom";
+import { PROP_TYPE } from "../../../../constants";
 
 const PostContentContainer = ({
     post: { id, title, content, imageUrl, publishedAt },
@@ -67,3 +68,7 @@ export const PostContent = styled(PostContentContainer)`
         word-break: break-word;
     }
 `;
+
+PostContent.propTypes = {
+    post: PROP_TYPE.POST.isRequired,
+};

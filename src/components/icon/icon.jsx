@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const IconContainer = ({ className, id, onClick }) => (
     <div className={className} onClick={onClick}>
@@ -26,3 +27,7 @@ export const Icon = styled(IconContainer)`
         font-size: 10px;
     }
 `;
+
+Icon.propTypes = {
+    id: PropTypes.string.isRequired,
+};

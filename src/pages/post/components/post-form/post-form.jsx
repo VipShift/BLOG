@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { savePostAsync } from "../../../../actions";
 import { useServerRequest } from "../../../../hooks";
 import { LocalModal } from "./utils";
+import { PROP_TYPE } from "../../../../constants";
 
 const PostFormContainer = ({ post, className }) => {
     const { id, title, content, imageUrl, publishedAt } = post;
@@ -135,3 +136,7 @@ export const PostForm = styled(PostFormContainer)`
         hyphens: auto;
     }
 `;
+
+PostForm.propTypes = {
+    post: PROP_TYPE.POST.isRequired,
+};

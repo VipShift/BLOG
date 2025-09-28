@@ -1,4 +1,5 @@
 // src/pages/main/components/pagination.jsx
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Button } from "../../../../components";
 
@@ -52,3 +53,9 @@ export const Pagination = styled(PaginationContainer)`
         white-space: nowrap;
     }
 `;
+
+Pagination.propTypes = {
+    page: PropTypes.number.isRequired,
+    setPage: PropTypes.func.isRequired,
+    totalPages: PropTypes.number.isRequired,
+};

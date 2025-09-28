@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const LocalModalContainer = ({ className, onClickc }) => {
@@ -64,3 +65,7 @@ export const LocalModal = styled(LocalModalContainer)`
         }
     }
 `;
+
+LocalModal.propTypes = {
+    onClickc: PropTypes.func.isRequired,
+};

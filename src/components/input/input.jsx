@@ -1,5 +1,6 @@
 import { forwardRef } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const InputContainer = forwardRef(
     ({ className, placeholder, width, ...props }, ref) => {
@@ -27,3 +28,7 @@ export const Input = styled(InputContainer)`
     box-shadow: 0px 2px 12px rgba(60, 60, 60, 0.2);
     border-radius: 10px;
 `;
+
+Input.propTypes = {
+    width: PropTypes.string,
+};
