@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { Icon } from "../../../../components";
 import { Comment } from "./components";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUserId } from "../../../../selectors";
+import { selectUserId, selectUserRole } from "../../../../selectors";
 import { useServerRequest } from "../../../../hooks";
 import { addCommentAsync } from "../../../../actions";
+import { ROLE } from "../../../../constants";
 
 //
 
@@ -14,28 +15,41 @@ const CommentsContainer = ({ className, comments, postId }) => {
     const userId = useSelector(selectUserId);
     const [newComment, setNewComment] = useState("");
     const requestServer = useServerRequest();
+    const userRole = useSelector(selectUserRole);
 
     const onNewCommentAdd = (userId, postId, content) => {
         dispatch(addCommentAsync(requestServer, userId, postId, content));
         setNewComment("");
     };
 
+    console.log("comments", comments);
+
+    console.log(
+        "com",
+        comments.map(({ id, author, content }) => ({ id, author, content }))
+    );
+
+    const isGuest = userRole === ROLE.GUST;
     //
     return (
         <div className={className}>
-            <div className="new-comment">
-                <textarea
-                    name="comment"
-                    value={newComment}
-                    placeholder="Написать комментарий..."
-                    onChange={(e) => setNewComment(e.target.value)}
-                ></textarea>
-                <Icon
-                    id="fa-paper-plane-o"
-                    size="22px"
-                    onClick={() => onNewCommentAdd(userId, postId, newComment)}
-                />
-            </div>
+            {!isGuest && (
+                <div className="new-comment">
+                    <textarea
+                        name="comment"
+                        value={newComment}
+                        placeholder="Kommentar schreiben..."
+                        onChange={(e) => setNewComment(e.target.value)}
+                    ></textarea>
+                    <Icon
+                        id="fa-paper-plane-o"
+                        size="22px"
+                        onClick={() =>
+                            onNewCommentAdd(userId, postId, newComment)
+                        }
+                    />
+                </div>
+            )}
 
             <div className="comments">
                 {comments.map(({ id, author, content, publishedAt }) => (

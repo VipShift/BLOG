@@ -1,4 +1,5 @@
 // src/pages/post/post.jsx
+import styled from "styled-components";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { useMatch, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,7 +7,6 @@ import { Comments, PostContent, PostForm } from "./components";
 import { useServerRequest } from "../../hooks";
 import { loadPostAsync, resetPostData } from "../../actions";
 import { selectPost } from "../../selectors";
-import styled from "styled-components";
 import { Error, PrivetContent } from "../../components";
 import { ROLE } from "../../constants";
 
@@ -56,6 +56,7 @@ const PostContainer = ({ className }) => {
             <>
                 <div className={className}>
                     <PostContent post={post} />
+
                     <Comments comments={post.comments} postId={post.id} />
                 </div>
             </>

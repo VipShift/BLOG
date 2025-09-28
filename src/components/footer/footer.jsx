@@ -82,11 +82,11 @@ const FooterContainer = ({ className }) => {
 };
 
 export const Footer = styled(FooterContainer)`
-    position: fixed;
-    left: 100;
-    right: 100;
-    bottom: 0;
-    z-index: 100;
+    // position: fixed;
+    // left: 100;
+    // right: 100;
+    // bottom: 0;
+    // z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,6 +94,7 @@ export const Footer = styled(FooterContainer)`
     font-weight: bolt;
     width: 1000px;
     height: 90px;
+    border-top: 1px solid #3f3f3f;
     background-color: #000000;
     box-shadow: 0px -6px 12px rgba(0, 0, 0, 0.25);
     @media (max-width: 1020px) {

@@ -9,6 +9,7 @@ import {
     selectUserRole,
     selectUserSession,
 } from "../../../../selectors";
+import { checkAccess } from "../../../../utils";
 
 const RightAligned = styled.div`
     display: flex;
@@ -37,8 +38,8 @@ const ButtonMy = styled.button`
     height: 25px;
     color: #fff;
     background-color: #242424;
-    border: 1px solid #5f5f5f;
-    box-shadow: 0px 2px 12px rgba(91, 90, 90, 0.2);
+    border: 1px solid #ffffff;
+    box-shadow: 0px 2px 12px rgba(172, 172, 172, 0.2);
     border-radius: 10px;
 
     &:hover {
@@ -82,6 +83,8 @@ const ControlPanelContainer = ({ className }) => {
         navigate("/login");
     };
 
+    const isAdmin = checkAccess([ROLE.ADMIN], roleId);
+
     return (
         <div className={className}>
             <RightAligned>
@@ -98,12 +101,16 @@ const ControlPanelContainer = ({ className }) => {
             </RightAligned>
             <RightAligned>
                 <Icon id="fa-arrow-circle-left" onClick={() => navigate(-1)} />
-                <Link to="/post/create">
-                    <Icon id="fa fa-file-text" />
-                </Link>
-                <Link to="/users">
-                    <Icon id="fa fa-users" />
-                </Link>
+                {isAdmin && (
+                    <>
+                        <Link to="/post/create">
+                            <Icon id="fa fa-file-text" />
+                        </Link>
+                        <Link to="/users">
+                            <Icon id="fa fa-users" />
+                        </Link>
+                    </>
+                )}
             </RightAligned>
         </div>
     );

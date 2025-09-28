@@ -26,8 +26,6 @@ const UserRowContainer = ({
 
     const onRoleChange = (e) => setSelectedRoleId(Number(e.target.value));
 
-    //   const onDelete = () => {}
-
     return (
         <div className={className}>
             <TableRow border={true} shadow={true}>
@@ -79,4 +77,3 @@ export const UserRow = styled(UserRowContainer)`
         font-size: 16px;
     }
 `;
-

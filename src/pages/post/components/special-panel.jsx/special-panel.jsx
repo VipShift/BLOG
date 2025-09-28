@@ -1,20 +1,24 @@
 import styled from "styled-components";
-import { Icon } from "../../../../components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { closeModal, openModal, removePostAsync } from "../../../../actions";
 import { useServerRequest } from "../../../../hooks";
-import { useNavigate } from "react-router-dom";
+import { ROLE } from "../../../../constants";
+import { selectUserRole } from "../../../../selectors";
+import { checkAccess } from "../../../../utils";
+import { Icon } from "../../../../components";
 
 const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
     //
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const requestServer = useServerRequest();
+    const roleId = useSelector(selectUserRole);
 
-    const onPpostRemove = (id) => {
+    const onPostRemove = (id) => {
         dispatch(
             openModal({
-                text: "Удалить статью?",
+                text: "Artikel löschen ?",
                 onConfirm: () => {
                     dispatch(removePostAsync(requestServer, id)).then(() =>
                         navigate("/")
@@ -25,6 +29,8 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
             })
         );
     };
+
+    const isAdmin = checkAccess([ROLE.ADMIN], roleId);
 
     return (
         <div className={className}>
@@ -40,16 +46,18 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
                 <div className="date">{publishedAt}</div>
             </div>
 
-            <div className="buttons">
-                {editButton}
-                {publishedAt && (
-                    <Icon
-                        id="fa-trash-o"
-                        size="22px"
-                        onClick={() => onPpostRemove(id)}
-                    />
-                )}
-            </div>
+            {isAdmin && (
+                <div className="buttons">
+                    {editButton}
+                    {publishedAt && (
+                        <Icon
+                            id="fa-trash-o"
+                            size="22px"
+                            onClick={() => onPostRemove(id)}
+                        />
+                    )}
+                </div>
+            )}
         </div>
     );
 };

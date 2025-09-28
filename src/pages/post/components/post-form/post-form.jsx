@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { Icon, Input } from "../../../../components";
 import { SpecialPanel } from "../special-panel.jsx/special-panel";
-import { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { sanitizeContent } from "./utils";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { savePostAsync } from "../../../../actions";
 import { useServerRequest } from "../../../../hooks";
+import { LocalModal } from "./utils";
 
 const PostFormContainer = ({ post, className }) => {
     const { id, title, content, imageUrl, publishedAt } = post;
@@ -15,8 +16,11 @@ const PostFormContainer = ({ post, className }) => {
     const navigate = useNavigate();
     const requestServer = useServerRequest();
 
+    const [showModal, setShowModal] = useState(false);
+
     const [imageValue, setImageValue] = useState(imageUrl);
     const [titleValue, setTitleValue] = useState(title);
+    const [contentText, setContentText] = useState(content);
     const contentRef = useRef(null);
 
     useEffect(() => {
@@ -28,6 +32,11 @@ const PostFormContainer = ({ post, className }) => {
     }, [id, imageUrl, title, content]);
 
     const onSave = () => {
+        if (titleValue === "" || imageValue === "" || contentText === "") {
+            setShowModal(true);
+            return;
+        }
+
         const newContant = sanitizeContent(contentRef.current.innerHTML);
 
         dispatch(
@@ -44,6 +53,7 @@ const PostFormContainer = ({ post, className }) => {
 
     return (
         <div className={className}>
+            {showModal && <LocalModal onClickc={() => setShowModal(false)} />}
             <SpecialPanel
                 id={id}
                 publishedAt={publishedAt}
@@ -56,7 +66,6 @@ const PostFormContainer = ({ post, className }) => {
                     />
                 }
             />
-
             <div className="editor">
                 <Input
                     value={imageValue}
@@ -69,7 +78,6 @@ const PostFormContainer = ({ post, className }) => {
                     placeholder="Überschrift..."
                 />
             </div>
-
             <h3>Inhalt des Beitrags</h3>
             <div
                 ref={contentRef}
@@ -118,6 +126,7 @@ export const PostForm = styled(PostFormContainer)`
         color: #f8f8f8;
         white-space: pre-wrap;
         border-radius: 7px;
+        border: 1px solid #716f6f;
         min-height: 200px;
         background-color: #494949ab;
         padding: 10px;

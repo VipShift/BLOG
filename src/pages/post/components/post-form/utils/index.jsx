@@ -1,1 +1,2 @@
-export * from './sanitize-content'
+export * from "./sanitize-content";
+export * from "./local-modal";

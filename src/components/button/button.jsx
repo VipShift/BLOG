@@ -14,6 +14,7 @@ export const Button = styled(ButtonContainer)`
     justify-content: center;
     align-items: center;
     font-size: 16px;
+    padding: 5px 10px;
     height: ${({ height }) => height};
     color: #ffffff;
     border: 1px solid #292828;
